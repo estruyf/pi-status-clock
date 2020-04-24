@@ -52,19 +52,20 @@ draw = ImageDraw.Draw(img)
 # Write the time
 timeFont = ImageFont.truetype(FredokaOne, 45)
 hour = time.strftime("%H")
-hourSize = timeFont.getsize(hour)
 minutes = time.strftime("%M")
-minutesSize = timeFont.getsize(minutes)
+
+hourSizeX, hourSizeY = timeFont.getsize(hour)
+minSizeX, minSizeY = timeFont.getsize(minutes)
 
 
-hourX = (inky_display.WIDTH / 4) - 16 - (hourSize / 2)
-minutesX = (inky_display.WIDTH / 4) - 16 - (minutesSize / 2)
+hourX = (inky_display.WIDTH / 4) - 16 - (hourSizeX / 2)
+minutesX = (inky_display.WIDTH / 4) - 16 - (minSizeX / 2)
 
 hoursY = (inky_display.HEIGHT / 4)
 minutesY = hoursY * 3
 
-draw.text((timeX, (hoursY - 27)), hour, inky_display.BLACK, timeFont)
-draw.text((timeX, (minutesY - 27)), minutes, inky_display.BLACK, timeFont)
+draw.text((timeX, (hoursY - (hourSizeY / 2))), hour, inky_display.BLACK, timeFont)
+draw.text((timeX, (minutesY - (minSizeY / 2))), minutes, inky_display.BLACK, timeFont)
 
 # Show on screen
 inky_display.set_image(img)
