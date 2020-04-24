@@ -31,6 +31,9 @@ class InkyPHATFast(InkyFast):
 inky_display = None
 color = "black"
 
+# Get the current path
+PATH = os.path.dirname(__file__)
+
 # Set the display type based on the time
 if dt.now().minute == 0 or dt.now().minute == 30:
     # Slow update
