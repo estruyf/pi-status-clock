@@ -32,7 +32,7 @@ inky_display = None
 color = "black"
 
 # Set the display type based on the time
-if dt.now().minute === 0 or dt.now().minute === 30:
+if dt.now().minute == 0 or dt.now().minute == 30:
     # Slow update
     inky_display = InkyPHAT(color)
 else:
