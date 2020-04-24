@@ -64,8 +64,8 @@ minutesX = (inky_display.WIDTH / 4) - 16 - (minSizeX / 2)
 hoursY = (inky_display.HEIGHT / 4)
 minutesY = hoursY * 3
 
-draw.text((hourX, (hoursY - (hourSizeY / 2) - 5)), hour, inky_display.BLACK, timeFont)
-draw.text((minutesX, (minutesY - (minSizeY / 2) - 5)), minutes, inky_display.BLACK, timeFont)
+draw.text((hourX, (hoursY - (hourSizeY / 2) - 3)), hour, inky_display.BLACK, timeFont)
+draw.text((minutesX, (minutesY - (minSizeY / 2) - 3)), minutes, inky_display.BLACK, timeFont)
 
 # Show on screen
 inky_display.set_image(img)
