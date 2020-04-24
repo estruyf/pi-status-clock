@@ -43,7 +43,7 @@ inky_display = InkyPHAT(color)
 #     # Fast update
 #     inky_display = InkyPHATFast(color)
 
-inky_display.set_border(inky_display.BLACK)
+inky_display.set_border(inky_display.WHITE)
 
 # Create the background
 img = Image.open(os.path.join(PATH, "background.png"))
@@ -57,8 +57,8 @@ minutes = time.strftime("%M")
 timeX = (inky_display.WIDTH / 4) - 16
 hoursY = (inky_display.HEIGHT / 4)
 minutesY = hoursY * 3
-draw.text((timeX, (hoursY - 22)), hour, inky_display.WHITE, timeFont)
-draw.text((timeX, (minutesY - 22)), minutes, inky_display.WHITE, timeFont)
+draw.text((timeX, (hoursY - 22)), hour, inky_display.BLACK, timeFont)
+draw.text((timeX, (minutesY - 22)), minutes, inky_display.BLACK, timeFont)
 
 # Show on screen
 inky_display.set_image(img)
