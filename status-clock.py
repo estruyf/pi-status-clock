@@ -57,8 +57,8 @@ minutes = time.strftime("%M")
 timeX = (inky_display.WIDTH / 4) - 16
 hoursY = (inky_display.HEIGHT / 4)
 minutesY = hoursY * 3
-draw.text((timeX, hoursY), hour, inky_display.WHITE, timeFont)
-draw.text((timeX, 12), minutes, inky_display.WHITE, timeFont)
+draw.text((timeX, (hoursY - 22)), hour, inky_display.WHITE, timeFont)
+draw.text((timeX, (minutesY - 22)), minutes, inky_display.WHITE, timeFont)
 
 # Show on screen
 inky_display.set_image(img)
