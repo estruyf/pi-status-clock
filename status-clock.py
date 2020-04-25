@@ -36,13 +36,12 @@ color = "black"
 PATH = os.path.dirname(__file__)
 
 # Set the display type based on the time
-inky_display = InkySlow(color)
-# if dt.now().minute == 0 or dt.now().minute == 30:
-#     # Slow update
-#     inky_display = InkyPHAT(color)
-# else:
-#     # Fast update
-#     inky_display = InkyPHATFast(color)
+if dt.now().minute == 0 or dt.now().minute == 30:
+    # Slow update
+    inky_display = InkySlow(color)
+else:
+    # Fast update
+    inky_display = InkyFast(color)
 
 inky_display.set_border(inky_display.WHITE)
 
