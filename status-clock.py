@@ -1,32 +1,33 @@
 #!/usr/bin/python
 
-from inky import InkyPHAT
+from inky import InkyPHAT as InkySlow
+from inky_mod import InkyPHAT as InkyFast
 from PIL import Image, ImageFont, ImageDraw
 from font_fredoka_one import FredokaOne
 from datetime import datetime as dt
 import time
 import os
 
-import sys  
-sys.path.append('/home/pi/inky_fast')
-from inky_fast import InkyFast
+# import sys  
+# sys.path.append('/home/pi/inky_fast')
+# from inky_fast import InkyFast
 
-class InkyPHATFast(InkyFast):
-    WIDTH = 212
-    HEIGHT = 104
+# class InkyPHATFast(InkyFast):
+#     WIDTH = 212
+#     HEIGHT = 104
 
-    WHITE = 0
-    BLACK = 1
-    RED = 2
-    YELLOW = 2
+#     WHITE = 0
+#     BLACK = 1
+#     RED = 2
+#     YELLOW = 2
 
-    def __init__(self, colour):
-        InkyFast.__init__(
-            self,
-            resolution=(self.WIDTH, self.HEIGHT),
-            colour=colour,
-            h_flip=False,
-            v_flip=False)
+#     def __init__(self, colour):
+#         InkyFast.__init__(
+#             self,
+#             resolution=(self.WIDTH, self.HEIGHT),
+#             colour=colour,
+#             h_flip=False,
+#             v_flip=False)
 
 inky_display = None
 color = "black"
@@ -35,7 +36,7 @@ color = "black"
 PATH = os.path.dirname(__file__)
 
 # Set the display type based on the time
-inky_display = InkyPHAT(color)
+inky_display = InkySlow(color)
 # if dt.now().minute == 0 or dt.now().minute == 30:
 #     # Slow update
 #     inky_display = InkyPHAT(color)
@@ -56,7 +57,6 @@ minutes = time.strftime("%M")
 
 hourSizeX, hourSizeY = timeFont.getsize(hour)
 minSizeX, minSizeY = timeFont.getsize(minutes)
-
 
 hourX = (inky_display.WIDTH / 4) - 16 - (hourSizeX / 2)
 minutesX = (inky_display.WIDTH / 4) - 16 - (minSizeX / 2)
