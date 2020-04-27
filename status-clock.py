@@ -41,7 +41,7 @@ titleXLoc = (inky_display.WIDTH / 2) - 25
 titleYLoc = (inky_display.HEIGHT / 2) + 5
 titleLines = textwrap.wrap(meetingTitle, width = (212 - titleXLoc - 3))
 for line in titleLines:
-    width, height = font.getsize(line)
+    width, height = meetingTitle.getsize(line)
     draw.text((titleXLoc, titleYLoc), line, inky_display.WHITE, meetingFont)
     titleYLoc += height
 
