@@ -7,6 +7,7 @@ from font_fredoka_one import FredokaOne
 from datetime import datetime as dt
 import requests
 import time
+import textwrap
 import os
 
 # meetingReq = requests.get('http://0.0.0.0:1337/get')
@@ -33,13 +34,16 @@ img = Image.open(os.path.join(PATH, "background.png"))
 draw = ImageDraw.Draw(img)
 
 # Write the meeting
-meetingFont = ImageFont.truetype(FredokaOne, 12)
+meetingFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 12)
 # meetingTitle = meetingJson.get('title')
 meetingTitle = "Hey ... is it time for a chat??"
-titleX, titleY = meetingFont.getsize(meetingTitle)
-titleXLoc = (inky_display.WIDTH / 2) - 30
+titleXLoc = (inky_display.WIDTH / 2) - 25
 titleYLoc = (inky_display.HEIGHT / 2) + 5
-draw.text((titleXLoc, titleYLoc), meetingTitle, inky_display.WHITE, meetingFont)
+titleLines = textwrap.wrap(meetingTitle, width = (212 - titleXLoc - 3))
+for line in titleLines:
+    width, height = font.getsize(line)
+    draw.text((titleXLoc, titleYLoc), line, inky_display.WHITE, meetingFont)
+    titleYLoc += height
 
 # meetingTime = meetingJson.get('time')
 # timeX, timeY = timeFont.getsize(minutes)
