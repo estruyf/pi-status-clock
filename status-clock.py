@@ -34,10 +34,10 @@ img = Image.open(os.path.join(PATH, "background.png"))
 draw = ImageDraw.Draw(img)
 
 # Write the meeting
-meetingFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 12)
+meetingFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 16)
 # meetingTitle = meetingJson.get('title')
 meetingTitle = "Hey ... is it time for a chat??"
-titleXLoc = (inky_display.WIDTH / 2) - 25
+titleXLoc = (inky_display.WIDTH / 2) - 20
 titleYLoc = (inky_display.HEIGHT / 2) + 5
 titleLines = textwrap.wrap(meetingTitle, width = (212 - titleXLoc - 3))
 for line in titleLines:
