@@ -33,11 +33,11 @@ img = Image.open(os.path.join(PATH, "background.png"))
 draw = ImageDraw.Draw(img)
 
 # Write the meeting
-meetingFont = ImageFont.truetype(FredokaOne, 16)
+meetingFont = ImageFont.truetype(FredokaOne, 12)
 # meetingTitle = meetingJson.get('title')
 meetingTitle = "Hey ... is it time for a chat??"
 titleX, titleY = meetingFont.getsize(meetingTitle)
-titleXLoc = (inky_display.WIDTH / 2)
+titleXLoc = (inky_display.WIDTH / 2) - 30
 titleYLoc = (inky_display.HEIGHT / 2) + 5
 draw.text((titleXLoc, titleYLoc), meetingTitle, inky_display.WHITE, meetingFont)
 
