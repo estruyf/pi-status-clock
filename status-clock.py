@@ -63,13 +63,12 @@ img = Image.open(os.path.join(PATH, "background.png"))
 draw = ImageDraw.Draw(img)
 
 # Get the meeting details
-# meetingReq = requests.get('http://0.0.0.0:1337/get')
-# meetingJson = meetingReq.json()
+meetingReq = requests.get('http://0.0.0.0:1337/get')
+meetingJson = meetingReq.json()
 
-# Write the meeting
+# Write the meeting title
 meetingFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 16)
-# meetingTitle = meetingJson.get('title')
-meetingTitle = "Hey ... is it time for a chat??"
+meetingTitle = meetingJson.get('title')
 titleXLoc = (inky_display.WIDTH / 2) - 15
 titleYLoc = (inky_display.HEIGHT / 2) + 5
 titleLines = textwrap.wrap(meetingTitle, width = 22)
@@ -78,10 +77,10 @@ for line in titleLines:
     draw.text((titleXLoc, titleYLoc), line, inky_display.WHITE, meetingFont)
     titleYLoc += height
 
-# meetingTime = meetingJson.get('time')
-meetingTime = "tomorrow at 12:00 PM"
+# Write the meeting time
+meetingTime = meetingJson.get('time')
 timeWidth, timeHeight = meetingFont.getsize(meetingTime)
-timeXLoc = 212 - 10 - timeWidth
+timeXLoc = 212 - 5 - timeWidth
 timeYLoc = 88
 draw.text((timeXLoc, timeYLoc), meetingTime, inky_display.WHITE, meetingFont)
 
@@ -102,15 +101,11 @@ for char in hour:
     draw.text((hourX, (hoursY - (height / 2) - 5)), char, inky_display.WHITE, timeFont)
     hourX += (width + 3)
 
-
+# Print the minutes
 minutes = time.strftime("%M")
 minSizeX, minSizeY = timeFont.getsize(minutes)
 minutesX = (inky_display.WIDTH / 4) - 20 - (minSizeX / 2)
-
-
 minutesY = hoursY * 3
-
-
 draw.text((minutesX, (minutesY - (minSizeY / 2) - 3)), minutes, inky_display.BLACK, timeFont)
 
 # Show on screen
