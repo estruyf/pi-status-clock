@@ -130,7 +130,7 @@ draw.text((tempX + tempWidth, tempY), "o", inky_display.WHITE, meetingFont)
 # Write the availability
 availability = reqData.get('availability')
 if availability is not None:
-    img.paste(icons[availability], (212-36-5, 17), )
+    img.paste(icons[availability], (212-36-5, 17))
 
 # Write the time
 timeFont = ImageFont.truetype(FredokaOne, 45)
