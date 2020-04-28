@@ -88,17 +88,15 @@ draw.text((timeXLoc, timeYLoc), meetingTime, inky_display.WHITE, meetingFont)
 # Write the time
 timeFont = ImageFont.truetype(FredokaOne, 45)
 hour = time.strftime("%H")
-hourSizeX, hourSizeY = timeFont.getsize(hour)
-hourX = (inky_display.WIDTH / 4) - 20 - hourSizeX
+hourX = (inky_display.WIDTH / 4) - 20
 for char in hour:
     width, height = timeFont.getsize(char)
-    hourX = hourX + width
     draw.text((hourX+1, (hoursY - (hourSizeY / 2) - 5)), char, inky_display.BLACK, timeFont)
     draw.text((hourX-1, (hoursY - (hourSizeY / 2) - 5)), char, inky_display.BLACK, timeFont)
     draw.text((hourX, (hoursY - (hourSizeY / 2) - 5) + 1), char, inky_display.BLACK, timeFont)
     draw.text((hourX, (hoursY - (hourSizeY / 2) - 5) - 1), char, inky_display.BLACK, timeFont)
     draw.text((hourX, (hoursY - (hourSizeY / 2) - 5)), char, inky_display.WHITE, timeFont)
-    hourX = hourX + 2
+    hourX += (width + 2)
 
 
 minutes = time.strftime("%M")
