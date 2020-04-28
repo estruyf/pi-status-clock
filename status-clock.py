@@ -91,7 +91,7 @@ timeFont = ImageFont.truetype(FredokaOne, 45)
 # Calculate and print hour
 hour = time.strftime("%H")
 hourSizeX, hourSizeY = timeFont.getsize(hour)
-hourX = (inky_display.WIDTH / 4) - 20 - ((hourSizeX + 6) / 2) # spacing both ends + extra spacing between chars
+hourX = (inky_display.WIDTH / 4) - 20 - ((hourSizeX + 4) / 2) # spacing both ends
 hoursY = (inky_display.HEIGHT / 4)
 for char in hour:
     width, height = timeFont.getsize(char)
