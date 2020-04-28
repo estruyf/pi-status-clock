@@ -90,7 +90,7 @@ timeFont = ImageFont.truetype(FredokaOne, 45)
 hour = time.strftime("%H")
 minutes = time.strftime("%M")
 
-hourSizeX, hourSizeY = timeFont.getsize(hour, stroke_width=2)
+hourSizeX, hourSizeY = timeFont.getsize(hour)
 minSizeX, minSizeY = timeFont.getsize(minutes)
 
 hourX = (inky_display.WIDTH / 4) - 20 - (hourSizeX / 2)
@@ -99,11 +99,11 @@ minutesX = (inky_display.WIDTH / 4) - 20 - (minSizeX / 2)
 hoursY = (inky_display.HEIGHT / 4)
 minutesY = hoursY * 3
 
-draw.text((hourX+1, (hoursY - (hourSizeY / 2) - 5)), hour, inky_display.BLACK, timeFont, spacing=6)
-draw.text((hourX-1, (hoursY - (hourSizeY / 2) - 5)), hour, inky_display.BLACK, timeFont, spacing=6)
-draw.text((hourX, (hoursY - (hourSizeY / 2) - 5) + 1), hour, inky_display.BLACK, timeFont, spacing=6)
-draw.text((hourX, (hoursY - (hourSizeY / 2) - 5) - 1), hour, inky_display.BLACK, timeFont, spacing=6)
-draw.text((hourX, (hoursY - (hourSizeY / 2) - 5)), hour, inky_display.YELLOW, timeFont, spacing=6)
+draw.text((hourX+1, (hoursY - (hourSizeY / 2) - 5)), hour, inky_display.BLACK, timeFont, spacing=10)
+draw.text((hourX-1, (hoursY - (hourSizeY / 2) - 5)), hour, inky_display.BLACK, timeFont, spacing=10)
+draw.text((hourX, (hoursY - (hourSizeY / 2) - 5) + 1), hour, inky_display.BLACK, timeFont, spacing=10)
+draw.text((hourX, (hoursY - (hourSizeY / 2) - 5) - 1), hour, inky_display.BLACK, timeFont, spacing=10)
+draw.text((hourX, (hoursY - (hourSizeY / 2) - 5)), hour, inky_display.WHITE, timeFont, spacing=10)
 draw.text((minutesX, (minutesY - (minSizeY / 2) - 3)), minutes, inky_display.BLACK, timeFont)
 
 # Show on screen
