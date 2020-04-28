@@ -87,24 +87,29 @@ draw.text((timeXLoc, timeYLoc), meetingTime, inky_display.WHITE, meetingFont)
 
 # Write the time
 timeFont = ImageFont.truetype(FredokaOne, 45)
-hour = " ".join(time.strftime("%H"))
-minutes = " ".join(time.strftime("%M"))
-
+hour = time.strftime("%H")
 hourSizeX, hourSizeY = timeFont.getsize(hour)
-minSizeX, minSizeY = timeFont.getsize(minutes)
+hourX = (inky_display.WIDTH / 4) - 20 - hourSizeX
+for char in hour:
+    width, height = timeFont.getsize(char)
+    hourX = hourX + width
+    draw.text((hourX+1, (hoursY - (hourSizeY / 2) - 5)), char, inky_display.BLACK, timeFont)
+    draw.text((hourX-1, (hoursY - (hourSizeY / 2) - 5)), char, inky_display.BLACK, timeFont)
+    draw.text((hourX, (hoursY - (hourSizeY / 2) - 5) + 1), char, inky_display.BLACK, timeFont)
+    draw.text((hourX, (hoursY - (hourSizeY / 2) - 5) - 1), char, inky_display.BLACK, timeFont)
+    draw.text((hourX, (hoursY - (hourSizeY / 2) - 5)), char, inky_display.WHITE, timeFont)
+    hourX = hourX + 2
 
-hourX = (inky_display.WIDTH / 4) - 20 - (hourSizeX / 2)
+
+minutes = time.strftime("%M")
+minSizeX, minSizeY = timeFont.getsize(minutes)
 minutesX = (inky_display.WIDTH / 4) - 20 - (minSizeX / 2)
 
 hoursY = (inky_display.HEIGHT / 4)
 minutesY = hoursY * 3
 
-draw.text((hourX+1, (hoursY - (hourSizeY / 2) - 5)), hour, inky_display.BLACK, timeFont, spacing=0)
-draw.text((hourX-1, (hoursY - (hourSizeY / 2) - 5)), hour, inky_display.BLACK, timeFont, spacing=0)
-draw.text((hourX, (hoursY - (hourSizeY / 2) - 5) + 1), hour, inky_display.BLACK, timeFont, spacing=0)
-draw.text((hourX, (hoursY - (hourSizeY / 2) - 5) - 1), hour, inky_display.BLACK, timeFont, spacing=0)
-draw.text((hourX, (hoursY - (hourSizeY / 2) - 5)), hour, inky_display.WHITE, timeFont, spacing=0)
-draw.text((minutesX, (minutesY - (minSizeY / 2) - 3)), minutes, inky_display.BLACK, timeFont, spacing=0)
+
+draw.text((minutesX, (minutesY - (minSizeY / 2) - 3)), minutes, inky_display.BLACK, timeFont)
 
 # Show on screen
 inky_display.set_image(img.rotate(180))
