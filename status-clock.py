@@ -46,13 +46,14 @@ def start_cleaning():
         print("\n")
     sys.exit(0)
 
-def create_mask(source, mask=(inky_display.WHITE, inky_display.BLACK, inky_display.RED)):
+def create_mask(source):
     """Create a transparency mask.
     Takes a paletized source image and converts it into a mask
     permitting all the colours supported by Inky pHAT (0, 1, 2)
     or an optional list of allowed colours.
     :param mask: Optional list of Inky pHAT colours to allow.
     """
+    mask = (inky_display.WHITE, inky_display.BLACK, inky_display.YELLOW)
     mask_image = Image.new("1", source.size)
     w, h = source.size
     for x in range(w):
