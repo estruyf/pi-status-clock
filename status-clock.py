@@ -56,13 +56,13 @@ def start_cleaning():
         print("\n")
     sys.exit(0)
 
-def reindex_image(source):
-    mask = (inky_display.WHITE, inky_display.BLACK, inky_display.YELLOW)
+def reindex_image(source, mask=(inky_display.WHITE, inky_display.BLACK, inky_display.YELLOW)):
+    converted = source.convert('RGB')
     img = Image.new("1", source.size)
     w, h = source.size
     for x in range(w):
         for y in range(h):
-            (r, g, b) = source.getpixel((x, y))
+            (r, g, b) = converted.getpixel(((x, y))
             color = inky_display.WHITE
             if r == 0:
                 color = inky_display.BLACK
