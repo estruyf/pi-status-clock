@@ -87,15 +87,18 @@ draw.text((timeXLoc, timeYLoc), meetingTime, inky_display.WHITE, meetingFont)
 
 # Write the time
 timeFont = ImageFont.truetype(FredokaOne, 45)
+
+# Calculate and print hour
 hour = time.strftime("%H")
-hourX = (inky_display.WIDTH / 4) - 20
+hourSizeX, hourSizeY = timeFont.getsize(hour)
+hourX = (inky_display.WIDTH / 4) - 20 - ((hourSizeX + 6) / 2) # spacing both ends + extra spacing between chars
 hoursY = (inky_display.HEIGHT / 4)
 for char in hour:
     width, height = timeFont.getsize(char)
-    draw.text((hourX+1, (hoursY - (height / 2) - 5)), char, inky_display.BLACK, timeFont)
-    draw.text((hourX-1, (hoursY - (height / 2) - 5)), char, inky_display.BLACK, timeFont)
-    draw.text((hourX, (hoursY - (height / 2) - 5) + 1), char, inky_display.BLACK, timeFont)
-    draw.text((hourX, (hoursY - (height / 2) - 5) - 1), char, inky_display.BLACK, timeFont)
+    draw.text((hourX+2, (hoursY - (height / 2) - 5)), char, inky_display.BLACK, timeFont)
+    draw.text((hourX-2, (hoursY - (height / 2) - 5)), char, inky_display.BLACK, timeFont)
+    draw.text((hourX, (hoursY - (height / 2) - 5) + 2), char, inky_display.BLACK, timeFont)
+    draw.text((hourX, (hoursY - (height / 2) - 5) - 2), char, inky_display.BLACK, timeFont)
     draw.text((hourX, (hoursY - (height / 2) - 5)), char, inky_display.WHITE, timeFont)
     hourX += (width + 2)
 
