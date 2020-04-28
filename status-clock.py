@@ -85,7 +85,6 @@ timeWidth, timeHeight = meetingFont.getsize(meetingTime)
 timeXLoc = 212 - 5 - timeWidth
 timeYLoc = 88
 draw.text((timeXLoc, timeYLoc), meetingTime, inky_display.WHITE, meetingFont)
-draw.ellipse((20, 20, 180, 180), fill = 'blue', outline ='blue')
 
 # Write the temperature
 temperature = reqData.get('temperature')
