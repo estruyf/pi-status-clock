@@ -10,15 +10,19 @@ import time
 import textwrap
 import os
 
+# Inky displays defaults
+inky_display = None
+color = "black"
+
 def clean_screen():
     if dt.now().minute == 0 and dt.now().hour == 10:
         start_cleaning()
-    elif dt.now().minute == 10 and dt.now().hour == 10:
+    elif dt.now().minute == 13 and dt.now().hour == 10:
         start_cleaning()
 
 def start_cleaning():
-    colours = (inky_display.RED, inky_display.BLACK, inky_display.WHITE)
-    colour_names = (colour, "black", "white")
+    colours = (inky_display.YELLOW, inky_display.BLACK, inky_display.WHITE)
+    colour_names = ("yellow", "black", "white")
     img = Image.new("P", (inky_display.WIDTH, inky_display.HEIGHT))
     for i in range(cycles):
         print("Cleaning cycle %i\n" % (i + 1))
@@ -33,10 +37,6 @@ def start_cleaning():
             time.sleep(1)
         print("\n")
     sys.exit(0)
-
-# Inky displays defaults
-inky_display = None
-color = "black"
 
 # Get the current path
 PATH = os.path.dirname(__file__)
