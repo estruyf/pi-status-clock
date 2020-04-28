@@ -63,12 +63,10 @@ def reindex_image(source, mask=(inky_display.WHITE, inky_display.BLACK, inky_dis
     for x in range(w):
         for y in range(h):
             (r, g, b) = converted.getpixel(((x, y))
-            color = None
             if r == 0:
-                color = inky_display.BLACK
+                img.putpixel((x, y), inky_display.BLACK)
             else:
-                color = inky_display.WHITE
-            img.putpixel((x, y), color)
+                img.putpixel((x, y), inky_display.WHITE)
 
     return img
 
