@@ -14,6 +14,7 @@ import sys
 # Inky displays defaults
 inky_display = None
 color = "black"
+meetingChars = 20
 
 def clean_screen():
     if dt.now().minute == 0 and dt.now().hour == 10:
@@ -65,13 +66,14 @@ draw = ImageDraw.Draw(img)
 # Get the meeting details
 req = requests.get('http://0.0.0.0:1337/get')
 reqData = req.json()
-meetingJson = reqData.get('meeting')
+
 # Write the meeting title
+meetingJson = reqData.get('meeting')
 meetingFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 16)
 meetingTitle = meetingJson.get('title')
 titleXLoc = (inky_display.WIDTH / 2) - 15
 titleYLoc = (inky_display.HEIGHT / 2) + 5
-titleLines = textwrap.wrap(meetingTitle, width = 22)
+titleLines = textwrap.wrap(meetingTitle, width = meetingChars)
 for line in titleLines:
     width, height = meetingFont.getsize(line)
     draw.text((titleXLoc, titleYLoc), line, inky_display.WHITE, meetingFont)
@@ -83,6 +85,16 @@ timeWidth, timeHeight = meetingFont.getsize(meetingTime)
 timeXLoc = 212 - 5 - timeWidth
 timeYLoc = 88
 draw.text((timeXLoc, timeYLoc), meetingTime, inky_display.WHITE, meetingFont)
+
+# Write the temperature
+temperature = reqData.get('temperature')
+if temperature > 0:
+    temperature = round(temperature) 
+
+tempFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 35)
+tempWidth = (inky_display.WIDTH / 2)
+tempHeight = 10
+draw.text((tempWidth, tempHeight), str(temperature) + "°", inky_display.WHITE, tempFont)
 
 # Write the time
 timeFont = ImageFont.truetype(FredokaOne, 45)
