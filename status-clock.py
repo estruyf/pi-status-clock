@@ -57,16 +57,13 @@ def start_cleaning():
     sys.exit(0)
 
 def reindex_image(source, mask=(inky_display.WHITE, inky_display.BLACK, inky_display.YELLOW)):
-    converted = source.convert('RGB')
-    img = Image.new("1", source.size)
     w, h = source.size
-    for x in range(w):
-        for y in range(h):
-            (r, g, b) = converted.getpixel((x, y))
-            if r == 0:
-                img.putpixel((x, y), inky_display.BLACK)
-            else:
-                img.putpixel((x, y), inky_display.WHITE)
+    img = Image.new(mode='P', size=(w, h))
+    remapped = []
+    pxmap = {0: 2, 1:0, 2:1}
+    for px in source.getdata():
+        remapped.append(pxmap[px])
+    img.putdata(remapped)
 
     return img
 
@@ -77,7 +74,7 @@ PATH = os.path.dirname(__file__)
 for icon in glob.glob(os.path.join(PATH, "assets/icon-*.png")):
     icon_name = icon.split("icon-")[1].replace(".png", "")
     icon_image = Image.open(icon)
-    icons[icon_name] = icon_image
+    icons[icon_name] = reindex_image(icon_image)
 
 # Check if display need to be cleaned
 clean_screen()
