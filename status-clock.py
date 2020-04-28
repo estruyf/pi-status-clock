@@ -21,6 +21,7 @@ def clean_screen():
         start_cleaning()
 
 def start_cleaning():
+    cycles = 3
     colours = (inky_display.YELLOW, inky_display.BLACK, inky_display.WHITE)
     colour_names = ("yellow", "black", "white")
     img = Image.new("P", (inky_display.WIDTH, inky_display.HEIGHT))
