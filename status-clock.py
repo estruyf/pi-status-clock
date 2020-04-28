@@ -99,7 +99,7 @@ minutesX = (inky_display.WIDTH / 4) - 16 - (minSizeX / 2)
 hoursY = (inky_display.HEIGHT / 4)
 minutesY = hoursY * 3
 
-draw.text((hourX, (hoursY - (hourSizeY / 2) - 5)), hour, inky_display.WHITE, timeFont, strokeWidth=2, strokeFill=inky_display.BLACK)
+draw.text((hourX, (hoursY - (hourSizeY / 2) - 5)), hour, inky_display.WHITE, timeFont, stroke_width=2, stroke_fill=inky_display.BLACK)
 # draw.text((hourX, (hoursY - (hourSizeY / 2) - 5)), hour, inky_display.WHITE, timeFont)
 draw.text((minutesX, (minutesY - (minSizeY / 2) - 3)), minutes, inky_display.BLACK, timeFont)
 
