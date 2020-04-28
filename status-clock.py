@@ -63,7 +63,7 @@ def reindex_image(source, mask=(inky_display.WHITE, inky_display.BLACK, inky_dis
     for x in range(w):
         for y in range(h):
             (r, g, b) = converted.getpixel(((x, y))
-            color = inky_display.WHITE
+            color = None
             if r == 0:
                 color = inky_display.BLACK
             else:
@@ -132,7 +132,7 @@ draw.text((tempX + tempWidth, tempY), "o", inky_display.WHITE, meetingFont)
 # Write the availability
 availability = reqData.get('availability')
 if availability is not None:
-    img.paste(icons[availability], (212-36-5, 17))
+    img.paste(icons[availability], (212-36-5, 17), )
 
 # Write the time
 timeFont = ImageFont.truetype(FredokaOne, 45)
