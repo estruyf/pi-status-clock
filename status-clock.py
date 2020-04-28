@@ -85,6 +85,7 @@ timeWidth, timeHeight = meetingFont.getsize(meetingTime)
 timeXLoc = 212 - 5 - timeWidth
 timeYLoc = 88
 draw.text((timeXLoc, timeYLoc), meetingTime, inky_display.WHITE, meetingFont)
+draw.ellipse((20, 20, 180, 180), fill = 'blue', outline ='blue')
 
 # Write the temperature
 temperature = reqData.get('temperature')
@@ -92,9 +93,13 @@ if temperature > 0:
     temperature = round(temperature) 
 
 tempFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 35)
-tempWidth = (inky_display.WIDTH / 2)
-tempHeight = 10
-draw.text((tempWidth, tempHeight), str(temperature) + "°", inky_display.WHITE, tempFont)
+tempX = (inky_display.WIDTH / 2) + 10
+tempY = 15
+tempTxt = str(temperature)
+tempWidth, tempHeight = tempFont.getsize(tempTxt)
+draw.text((tempX, tempY), tempTxt, inky_display.WHITE, tempFont)
+
+draw.text((tempX + tempWidth, tempY), "o", inky_display.WHITE, tempFont)
 
 # Write the time
 timeFont = ImageFont.truetype(FredokaOne, 45)
