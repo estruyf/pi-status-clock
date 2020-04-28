@@ -101,8 +101,8 @@ minutesY = hoursY * 3
 
 draw.text((hourX+1, (hoursY - (hourSizeY / 2) - 5)), hour, inky_display.BLACK, timeFont)
 draw.text((hourX-1, (hoursY - (hourSizeY / 2) - 5)), hour, inky_display.BLACK, timeFont)
-draw.text((hourX, (hoursY - (hourSizeY / 2) - 5)+1), hour, inky_display.BLACK, timeFont)
-draw.text((hourX, (hoursY - (hourSizeY / 2) - 5))-1, hour, inky_display.BLACK, timeFont)
+draw.text((hourX, (hoursY - (hourSizeY / 2) - 5) + 1), hour, inky_display.BLACK, timeFont)
+draw.text((hourX, (hoursY - (hourSizeY / 2) - 5) - 1), hour, inky_display.BLACK, timeFont)
 draw.text((hourX, (hoursY - (hourSizeY / 2) - 5)), hour, inky_display.YELLOW, timeFont)
 draw.text((minutesX, (minutesY - (minSizeY / 2) - 3)), minutes, inky_display.BLACK, timeFont)
 
