@@ -30,9 +30,11 @@ else:
     inky_display = InkyFast(color)
 
 def clean_screen():
-    if dt.now().minute == 0 and dt.now().hour == 10:
+    if dt.now().minute == 0 and dt.now().hour == 8:
         start_cleaning()
-    elif dt.now().minute == 15 and dt.now().hour == 10:
+    elif dt.now().minute == 0 and dt.now().hour == 19:
+        start_cleaning()
+    elif dt.now().minute == 30 and dt.now().hour == 12:
         start_cleaning()
 
 def start_cleaning():
