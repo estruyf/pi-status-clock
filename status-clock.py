@@ -26,7 +26,7 @@ else:
     inky_display = InkyFast(color)
 
 # Check if display need to be cleaned
-if dt.now().minute == 0 and (dt.now().hour == 10 or dt.now().hour == 19)
+if dt.now().minute == 0 and (dt.now().hour == 10 or dt.now().hour == 19):
     colours = (inky_display.RED, inky_display.BLACK, inky_display.WHITE)
     colour_names = (colour, "black", "white")
     img = Image.new("P", (inky_display.WIDTH, inky_display.HEIGHT))
