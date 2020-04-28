@@ -17,9 +17,8 @@ inky_display = None
 color = "black"
 meetingChars = 20
 
-# Dictionaries to store our icons and icon masks in
+# Dictionaries to store icons
 icons = {}
-masks = {}
 
 # Set the display type based on the time
 if dt.now().minute == 0 or dt.now().minute == 30:
@@ -57,23 +56,17 @@ def start_cleaning():
         print("\n")
     sys.exit(0)
 
-def create_mask(source):
-    """Create a transparency mask.
-    Takes a paletized source image and converts it into a mask
-    permitting all the colours supported by Inky pHAT (0, 1, 2)
-    or an optional list of allowed colours.
-    :param mask: Optional list of Inky pHAT colours to allow.
-    """
+def reindex_image(source):
     mask = (inky_display.WHITE, inky_display.BLACK, inky_display.YELLOW)
-    mask_image = Image.new("1", source.size)
+    img = Image.new("1", source.size)
     w, h = source.size
     for x in range(w):
         for y in range(h):
-            p = source.getpixel((x, y))
-            if p in mask:
-                mask_image.putpixel((x, y), 255)
+            (r, g, b) = source.getpixel((x, y))
+            color = inky_display.WHITE if r > 127 else inky_display.BLACK
+            img.putpixel((x, y), color)
 
-    return mask_image
+    return img
 
 # Get the current path
 PATH = os.path.dirname(__file__)
@@ -81,9 +74,7 @@ PATH = os.path.dirname(__file__)
 # Load our icon files and generate masks
 for icon in glob.glob(os.path.join(PATH, "assets/icon-*.png")):
     icon_name = icon.split("icon-")[1].replace(".png", "")
-    icon_image = Image.open(icon)
-    icons[icon_name] = icon_image
-    masks[icon_name] = create_mask(icon_image)
+    icons[icon_name] = Image.open(icon)
 
 # Check if display need to be cleaned
 clean_screen()
@@ -136,7 +127,7 @@ draw.text((tempX + tempWidth, tempY), "o", inky_display.WHITE, meetingFont)
 # Write the availability
 availability = reqData.get('availability')
 if availability is not None:
-    img.paste(icons[availability], (212-48-12-5, 17), masks[availability])
+    img.paste(icons[availability], (212-36-5, 17))
 
 # Write the time
 timeFont = ImageFont.truetype(FredokaOne, 45)
