@@ -16,6 +16,10 @@ inky_display = None
 color = "black"
 meetingChars = 20
 
+# Dictionaries to store our icons and icon masks in
+icons = {}
+masks = {}
+
 def clean_screen():
     if dt.now().minute == 0 and dt.now().hour == 10:
         start_cleaning()
@@ -42,8 +46,32 @@ def start_cleaning():
         print("\n")
     sys.exit(0)
 
+def create_mask(source, mask=(inky_display.WHITE, inky_display.BLACK, inky_display.RED)):
+    """Create a transparency mask.
+    Takes a paletized source image and converts it into a mask
+    permitting all the colours supported by Inky pHAT (0, 1, 2)
+    or an optional list of allowed colours.
+    :param mask: Optional list of Inky pHAT colours to allow.
+    """
+    mask_image = Image.new("1", source.size)
+    w, h = source.size
+    for x in range(w):
+        for y in range(h):
+            p = source.getpixel((x, y))
+            if p in mask:
+                mask_image.putpixel((x, y), 255)
+
+    return mask_image
+
 # Get the current path
 PATH = os.path.dirname(__file__)
+
+# Load our icon files and generate masks
+for icon in glob.glob(os.path.join(PATH, "assets/icon-*.png")):
+    icon_name = icon.split("icon-")[1].replace(".png", "")
+    icon_image = Image.open(icon)
+    icons[icon_name] = icon_image
+    masks[icon_name] = create_mask(icon_image)
 
 # Set the display type based on the time
 if dt.now().minute == 0 or dt.now().minute == 30:
@@ -100,6 +128,11 @@ draw.text((tempX, tempY), tempTxt, inky_display.WHITE, tempFont)
 
 # Degree symbol not supported with the font, we add an "o" instead
 draw.text((tempX + tempWidth, tempY), "o", inky_display.WHITE, meetingFont)
+
+# Write the availability
+availability = reqData.get('availability')
+if availability is not None:
+    img.paste(icons[availability], (212-48-5, 15), masks[availability])
 
 # Write the time
 timeFont = ImageFont.truetype(FredokaOne, 45)
