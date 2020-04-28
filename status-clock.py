@@ -21,6 +21,14 @@ meetingChars = 20
 icons = {}
 masks = {}
 
+# Set the display type based on the time
+if dt.now().minute == 0 or dt.now().minute == 30:
+    # Slow update
+    inky_display = InkySlow(color)
+else:
+    # Fast update
+    inky_display = InkyFast(color)
+
 def clean_screen():
     if dt.now().minute == 0 and dt.now().hour == 10:
         start_cleaning()
@@ -74,14 +82,6 @@ for icon in glob.glob(os.path.join(PATH, "assets/icon-*.png")):
     icon_image = Image.open(icon)
     icons[icon_name] = icon_image
     masks[icon_name] = create_mask(icon_image)
-
-# Set the display type based on the time
-if dt.now().minute == 0 or dt.now().minute == 30:
-    # Slow update
-    inky_display = InkySlow(color)
-else:
-    # Fast update
-    inky_display = InkyFast(color)
 
 # Check if display need to be cleaned
 clean_screen()
