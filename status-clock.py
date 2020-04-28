@@ -63,9 +63,9 @@ img = Image.open(os.path.join(PATH, "background.png"))
 draw = ImageDraw.Draw(img)
 
 # Get the meeting details
-meetingReq = requests.get('http://0.0.0.0:1337/get')
-meetingJson = meetingReq.json()
-
+req = requests.get('http://0.0.0.0:1337/get')
+reqData = req.json()
+meetingJson = reqData.get('meeting')
 # Write the meeting title
 meetingFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 16)
 meetingTitle = meetingJson.get('title')
