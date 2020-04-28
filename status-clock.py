@@ -78,7 +78,8 @@ PATH = os.path.dirname(__file__)
 # Load our icon files and generate masks
 for icon in glob.glob(os.path.join(PATH, "assets/icon-*.png")):
     icon_name = icon.split("icon-")[1].replace(".png", "")
-    icons[icon_name] = reindex_image(Image.open(icon))
+    icon_image = Image.open(icon)
+    icons[icon_name] = reindex_image(icon_image)
 
 # Check if display need to be cleaned
 clean_screen()
