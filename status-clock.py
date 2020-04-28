@@ -92,11 +92,11 @@ hourX = (inky_display.WIDTH / 4) - 20
 hoursY = (inky_display.HEIGHT / 4)
 for char in hour:
     width, height = timeFont.getsize(char)
-    draw.text((hourX+1, (hoursY - (hourSizeY / 2) - 5)), char, inky_display.BLACK, timeFont)
-    draw.text((hourX-1, (hoursY - (hourSizeY / 2) - 5)), char, inky_display.BLACK, timeFont)
-    draw.text((hourX, (hoursY - (hourSizeY / 2) - 5) + 1), char, inky_display.BLACK, timeFont)
-    draw.text((hourX, (hoursY - (hourSizeY / 2) - 5) - 1), char, inky_display.BLACK, timeFont)
-    draw.text((hourX, (hoursY - (hourSizeY / 2) - 5)), char, inky_display.WHITE, timeFont)
+    draw.text((hourX+1, (hoursY - (height / 2) - 5)), char, inky_display.BLACK, timeFont)
+    draw.text((hourX-1, (hoursY - (height / 2) - 5)), char, inky_display.BLACK, timeFont)
+    draw.text((hourX, (hoursY - (height / 2) - 5) + 1), char, inky_display.BLACK, timeFont)
+    draw.text((hourX, (hoursY - (height / 2) - 5) - 1), char, inky_display.BLACK, timeFont)
+    draw.text((hourX, (hoursY - (height / 2) - 5)), char, inky_display.WHITE, timeFont)
     hourX += (width + 2)
 
 
