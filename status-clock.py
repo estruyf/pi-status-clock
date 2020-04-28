@@ -10,9 +10,7 @@ import time
 import textwrap
 import os
 
-# meetingReq = requests.get('http://0.0.0.0:1337/get')
-# meetingJson = meetingReq.json()
-
+# Inky displays defaults
 inky_display = None
 color = "black"
 
@@ -27,11 +25,35 @@ else:
     # Fast update
     inky_display = InkyFast(color)
 
+# Check if display need to be cleaned
+if dt.now().minute == 0 and (dt.now().hour == 10 or dt.now().hour == 19)
+    colours = (inky_display.RED, inky_display.BLACK, inky_display.WHITE)
+    colour_names = (colour, "black", "white")
+    img = Image.new("P", (inky_display.WIDTH, inky_display.HEIGHT))
+    for i in range(cycles):
+        print("Cleaning cycle %i\n" % (i + 1))
+        for j, c in enumerate(colours):
+            print("- updating with %s" % colour_names[j])
+            inky_display.set_border(c)
+            for x in range(inky_display.WIDTH):
+                for y in range(inky_display.HEIGHT):
+                    img.putpixel((x, y), c)
+            inky_display.set_image(img)
+            inky_display.show()
+            time.sleep(1)
+        print("\n")
+    sys.exit(0)
+
+# Start the clock
 inky_display.set_border(inky_display.WHITE)
 
 # Create the background
 img = Image.open(os.path.join(PATH, "background.png"))
 draw = ImageDraw.Draw(img)
+
+# Get the meeting details
+# meetingReq = requests.get('http://0.0.0.0:1337/get')
+# meetingJson = meetingReq.json()
 
 # Write the meeting
 meetingFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 16)
