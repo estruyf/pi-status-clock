@@ -9,6 +9,7 @@ import requests
 import time
 import textwrap
 import os
+import sys
 
 # Inky displays defaults
 inky_display = None
@@ -17,10 +18,11 @@ color = "black"
 def clean_screen():
     if dt.now().minute == 0 and dt.now().hour == 10:
         start_cleaning()
-    elif dt.now().minute == 13 and dt.now().hour == 10:
+    elif dt.now().minute == 15 and dt.now().hour == 10:
         start_cleaning()
 
 def start_cleaning():
+    inky_display = InkySlow(color)
     cycles = 3
     colours = (inky_display.YELLOW, inky_display.BLACK, inky_display.WHITE)
     colour_names = ("yellow", "black", "white")
