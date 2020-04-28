@@ -10,6 +10,30 @@ import time
 import textwrap
 import os
 
+def clean_screen():
+    if dt.now().minute == 0 and dt.now().hour == 10:
+        start_cleaning()
+    elif dt.now().minute == 10 and dt.now().hour == 10:
+        start_cleaning()
+
+def start_cleaning():
+    colours = (inky_display.RED, inky_display.BLACK, inky_display.WHITE)
+    colour_names = (colour, "black", "white")
+    img = Image.new("P", (inky_display.WIDTH, inky_display.HEIGHT))
+    for i in range(cycles):
+        print("Cleaning cycle %i\n" % (i + 1))
+        for j, c in enumerate(colours):
+            print("- updating with %s" % colour_names[j])
+            inky_display.set_border(c)
+            for x in range(inky_display.WIDTH):
+                for y in range(inky_display.HEIGHT):
+                    img.putpixel((x, y), c)
+            inky_display.set_image(img)
+            inky_display.show()
+            time.sleep(1)
+        print("\n")
+    sys.exit(0)
+
 # Inky displays defaults
 inky_display = None
 color = "black"
@@ -25,7 +49,8 @@ else:
     # Fast update
     inky_display = InkyFast(color)
 
-
+# Check if display need to be cleaned
+clean_screen()
 
 # Start the clock
 inky_display.set_border(inky_display.WHITE)
@@ -75,5 +100,5 @@ draw.text((hourX, (hoursY - (hourSizeY / 2) - 5)), hour, inky_display.BLACK, tim
 draw.text((minutesX, (minutesY - (minSizeY / 2) - 3)), minutes, inky_display.BLACK, timeFont)
 
 # Show on screen
-inky_display.set_image(img)
+inky_display.set_image(img.rotate(180))
 inky_display.show()
