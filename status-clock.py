@@ -13,7 +13,7 @@ import sys
 
 # Inky displays defaults
 inky_display = None
-color = "black"
+color = "yellow"
 
 def clean_screen():
     if dt.now().minute == 0 and dt.now().hour == 10:
@@ -25,7 +25,7 @@ def start_cleaning():
     inky_display = InkySlow(color)
     cycles = 3
     colours = (inky_display.YELLOW, inky_display.BLACK, inky_display.WHITE)
-    colour_names = ("yellow", "black", "white")
+    colour_names = (color, "black", "white")
     img = Image.new("P", (inky_display.WIDTH, inky_display.HEIGHT))
     for i in range(cycles):
         print("Cleaning cycle %i\n" % (i + 1))
