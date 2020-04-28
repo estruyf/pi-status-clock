@@ -10,6 +10,7 @@ import time
 import textwrap
 import os
 import sys
+import glob
 
 # Inky displays defaults
 inky_display = None
