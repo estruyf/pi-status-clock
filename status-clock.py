@@ -63,7 +63,7 @@ def reindex_image(source):
     for x in range(w):
         for y in range(h):
             (r, g, b) = source.getpixel((x, y))
-            color = inky_display.WHITE if r > 127 else inky_display.BLACK
+            color = inky_display.BLACK if r > 127 else inky_display.WHITE
             img.putpixel((x, y), color)
 
     return img
