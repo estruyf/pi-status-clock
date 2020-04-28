@@ -76,7 +76,7 @@ PATH = os.path.dirname(__file__)
 # Load our icon files and generate masks
 for icon in glob.glob(os.path.join(PATH, "assets/icon-*.png")):
     icon_name = icon.split("icon-")[1].replace(".png", "")
-    icon_image = Image.open(icon).convert('1')
+    icon_image = Image.open(icon)
     icons[icon_name] = icon_image
 
 # Check if display need to be cleaned
@@ -130,7 +130,7 @@ draw.text((tempX + tempWidth, tempY), "o", inky_display.WHITE, meetingFont)
 # Write the availability
 availability = reqData.get('availability')
 if availability is not None:
-    img.paste(icons[availability], (212-36-5, 17), icons[availability])
+    img.paste(icons[availability], (212-36-5, 17))
 
 # Write the time
 timeFont = ImageFont.truetype(FredokaOne, 45)
