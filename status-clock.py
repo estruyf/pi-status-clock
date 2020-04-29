@@ -37,8 +37,7 @@ def clean_screen():
         start_cleaning()
 
 def start_cleaning():
-    inky_display = InkySlow(color)
-    cycles = 3
+    cycles = 4
     colours = (inky_display.YELLOW, inky_display.BLACK, inky_display.WHITE)
     colour_names = (color, "black", "white")
     img = Image.new("P", (inky_display.WIDTH, inky_display.HEIGHT))
@@ -64,7 +63,6 @@ def reindex_image(source, mask=(inky_display.WHITE, inky_display.BLACK, inky_dis
     for px in source.getdata():
         remapped.append(pxmap[px])
     img.putdata(remapped)
-
     return img
 
 # Get the current path
@@ -97,10 +95,13 @@ meetingTitle = meetingJson.get('title')
 titleXLoc = (inky_display.WIDTH / 2) - 15
 titleYLoc = (inky_display.HEIGHT / 2) + 5
 titleLines = textwrap.wrap(meetingTitle, width = meetingChars)
+i = 0
 for line in titleLines:
     width, height = meetingFont.getsize(line)
-    draw.text((titleXLoc, titleYLoc), line, inky_display.WHITE, meetingFont)
-    titleYLoc += height
+    if (i <= 1) {
+        draw.text(((titleXLoc - (i * 5)), titleYLoc), line, inky_display.WHITE, meetingFont)
+        titleYLoc += height
+    }
 
 # Write the meeting time
 meetingTime = meetingJson.get('time')
