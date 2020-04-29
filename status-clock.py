@@ -102,6 +102,7 @@ for line in titleLines:
         draw.text(((titleXLoc - (i * 5)), titleYLoc), line, inky_display.WHITE, meetingFont)
         titleYLoc += height
     }
+    i++
 
 # Write the meeting time
 meetingTime = meetingJson.get('time')
