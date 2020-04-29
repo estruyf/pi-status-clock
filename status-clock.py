@@ -98,10 +98,9 @@ titleLines = textwrap.wrap(meetingTitle, width = meetingChars)
 i = 0
 for line in titleLines:
     width, height = meetingFont.getsize(line)
-    if (i <= 1) {
+    if i <= 1:
         draw.text(((titleXLoc - (i * 5)), titleYLoc), line, inky_display.WHITE, meetingFont)
         titleYLoc += height
-    }
     i++
 
 # Write the meeting time
