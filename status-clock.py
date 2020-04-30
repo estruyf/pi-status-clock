@@ -144,7 +144,7 @@ for char in hour:
     draw.text((hourX-2, (hoursY - (height / 2) - 5)), char, inky_display.BLACK, timeFont)
     draw.text((hourX, (hoursY - (height / 2) - 5) + 2), char, inky_display.BLACK, timeFont)
     draw.text((hourX, (hoursY - (height / 2) - 5) - 2), char, inky_display.BLACK, timeFont)
-    draw.text((hourX, (hoursY - (height / 2) - 5)), char, inky_display.WHITE, timeFont)
+    draw.text((hourX, (hoursY - (height / 2) - 5)), char, inky_display.YELLOW, timeFont)
     hourX += (width + 3)
 
 # Print the minutes
