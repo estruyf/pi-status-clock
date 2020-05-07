@@ -125,6 +125,16 @@ draw.text((tempX, tempY), tempTxt, inky_display.WHITE, tempFont)
 # Degree symbol not supported with the font, we add an "o" instead
 draw.text((tempX + tempWidth, tempY), "o", inky_display.WHITE, meetingFont)
 
+# Write the number of tasks
+todoTasks = reqData.get('availability')
+if todoTasks is not None:
+    todoFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 35)
+    todoTxt = str(todoTasks)
+    todoWidth, todoHeight = tempFont.getsize(todoTxt)
+    todoX = (inky_display.WIDTH / 2) - 5 - todoWidth
+    todoY = 15
+    draw.text((todoX, todoY), todoTxt, inky_display.BLACK, todoFont)
+
 # Write the availability
 availability = reqData.get('availability')
 if availability is not None:
