@@ -126,7 +126,7 @@ draw.text((tempX, tempY), tempTxt, inky_display.WHITE, tempFont)
 draw.text((tempX + tempWidth, tempY), "o", inky_display.WHITE, meetingFont)
 
 # Write the number of tasks
-todoTasks = reqData.get('availability')
+todoTasks = reqData.get('todoTasks')
 if todoTasks is not None:
     todoFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 35)
     todoTxt = str(todoTasks)
