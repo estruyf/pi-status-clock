@@ -131,7 +131,7 @@ if todoTasks is not None:
     todoFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 35)
     todoTxt = str(todoTasks)
     todoWidth, todoHeight = tempFont.getsize(todoTxt)
-    todoX = (inky_display.WIDTH / 2) - 5 - todoWidth
+    todoX = (inky_display.WIDTH / 2) - 10 - todoWidth
     todoY = 15
     draw.text((todoX, todoY), todoTxt, inky_display.BLACK, todoFont)
 
