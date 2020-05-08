@@ -137,7 +137,7 @@ if todoTasks is not None:
     todoX = (inky_display.WIDTH - 36) - 10 - todoWidth
     todoY = 15
     draw.text((todoX, todoY), todoTxt, inky_display.BLACK, todoFont)
-    img.paste(icons["todo"], ((inky_display.WIDTH - 36) - 32 - 10 - todoWidth))
+    img.paste(icons["todo"], ((inky_display.WIDTH - 36) - 32 - 10 - todoWidth, 17))
 
 # Write the availability
 availability = reqData.get('availability')
