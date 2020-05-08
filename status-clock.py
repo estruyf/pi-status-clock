@@ -61,6 +61,7 @@ def reindex_image(source, mask=(inky_display.WHITE, inky_display.BLACK, inky_dis
     remapped = []
     pxmap = { 0:1, 1:0, 2:2 }
     for px in source.getdata():
+        print(px)
         remapped.append(pxmap[px])
     img.putdata(remapped)
     return img
@@ -71,6 +72,7 @@ PATH = os.path.dirname(__file__)
 # Load our icon files and generate masks
 for icon in glob.glob(os.path.join(PATH, "assets/icon-*.png")):
     icon_name = icon.split("icon-")[1].replace(".png", "")
+    print(icon_name)
     icon_image = Image.open(icon)
     icons[icon_name] = reindex_image(icon_image)
 
