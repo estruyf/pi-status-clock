@@ -61,8 +61,10 @@ def reindex_image(source, mask=(inky_display.WHITE, inky_display.BLACK, inky_dis
     remapped = []
     pxmap = { 0:1, 1:0, 2:2 }
     for px in source.getdata():
-        print(px)
-        remapped.append(pxmap[px])
+        try:
+            remapped.append(pxmap[px])
+        except:
+            remapped.append(pxmap[0])
     img.putdata(remapped)
     return img
 
