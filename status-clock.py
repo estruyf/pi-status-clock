@@ -125,8 +125,8 @@ if temperature != None and temperature > 0:
     tempWidth, tempHeight = tempFont.getsize(tempTxt)
     draw.text((tempX, tempY), tempTxt, inky_display.WHITE, tempFont)
 
-# Degree symbol not supported with the font, we add an "o" instead
-draw.text((tempX + tempWidth, tempY), "o", inky_display.WHITE, meetingFont)
+    # Degree symbol not supported with the font, we add an "o" instead
+    draw.text((tempX + tempWidth, tempY), "o", inky_display.WHITE, meetingFont)
 
 # Write the number of tasks
 todoTasks = reqData.get('todoTasks')
