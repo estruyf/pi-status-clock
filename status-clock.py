@@ -115,7 +115,7 @@ draw.text((timeXLoc, timeYLoc), meetingTime, inky_display.WHITE, meetingFont)
 
 # Write the temperature
 temperature = reqData.get('temperature')
-if temperature > 0:
+if temperature != None and temperature > 0:
     temperature = round(temperature) 
 
 tempFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 35)
