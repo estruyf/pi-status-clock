@@ -118,12 +118,12 @@ temperature = reqData.get('temperature')
 if temperature != None and temperature > 0:
     temperature = round(temperature) 
 
-tempFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 35)
-tempX = (inky_display.WIDTH / 2) + 5
-tempY = 15
-tempTxt = str(temperature)
-tempWidth, tempHeight = tempFont.getsize(tempTxt)
-draw.text((tempX, tempY), tempTxt, inky_display.WHITE, tempFont)
+    tempFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 35)
+    tempX = (inky_display.WIDTH / 2) + 5
+    tempY = 15
+    tempTxt = str(temperature)
+    tempWidth, tempHeight = tempFont.getsize(tempTxt)
+    draw.text((tempX, tempY), tempTxt, inky_display.WHITE, tempFont)
 
 # Degree symbol not supported with the font, we add an "o" instead
 draw.text((tempX + tempWidth, tempY), "o", inky_display.WHITE, meetingFont)
