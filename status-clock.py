@@ -133,7 +133,7 @@ todoTasks = reqData.get('todoTasks')
 if todoTasks is not None:
     todoFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 35)
     todoTxt = str(todoTasks)
-    todoWidth, todoHeight = tempFont.getsize(todoTxt)
+    todoWidth, todoHeight = todoFont.getsize(todoTxt)
     todoX = inky_display.WIDTH - todoWidth - 5
     todoY = 15
     draw.text((todoX, todoY), todoTxt, inky_display.BLACK, todoFont)
