@@ -169,5 +169,6 @@ minutesY = hoursY * 3
 draw.text((minutesX, (minutesY - (minSizeY / 2) - 3)), minutes, inky_display.BLACK, timeFont)
 
 # Show on screen
-inky_display.set_image(img.rotate(180))
+# inky_display.set_image(img.rotate(180))
+inky_display.set_image(img)
 inky_display.show()
