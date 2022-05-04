@@ -118,6 +118,7 @@ temperature = reqData.get('temperature')
 if temperature != None and temperature > 0:
     temperature = round(temperature) 
 
+    degFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 16)
     tempFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 35)
     tempX = (inky_display.WIDTH / 2) + 5
     tempY = 15
@@ -126,7 +127,7 @@ if temperature != None and temperature > 0:
     draw.text((tempX, tempY), tempTxt, inky_display.WHITE, tempFont)
 
     # Degree symbol not supported with the font, we add an "o" instead
-    draw.text((tempX + tempWidth, tempY), "o", inky_display.WHITE, tempFont)
+    draw.text((tempX + tempWidth, tempY), "o", inky_display.WHITE, degFont)
 
 # Write the number of tasks
 # todoTasks = reqData.get('todoTasks')
