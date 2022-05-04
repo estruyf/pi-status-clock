@@ -91,27 +91,27 @@ draw = ImageDraw.Draw(img)
 req = requests.get('http://0.0.0.0:1337/get')
 reqData = req.json()
 
-# Write the meeting title
-meetingJson = reqData.get('meeting')
-meetingFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 16)
-meetingTitle = meetingJson.get('title')
-titleXLoc = (inky_display.WIDTH / 2) - 15
-titleYLoc = (inky_display.HEIGHT / 2) + 5
-titleLines = textwrap.wrap(meetingTitle, width = meetingChars)
-i = 0
-for line in titleLines:
-    width, height = meetingFont.getsize(line)
-    if i <= 1:
-        draw.text(((titleXLoc - (i * 5)), titleYLoc), line, inky_display.WHITE, meetingFont)
-        titleYLoc += height
-    i += 1
+# # Write the meeting title
+# meetingJson = reqData.get('meeting')
+# meetingFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 16)
+# meetingTitle = meetingJson.get('title')
+# titleXLoc = (inky_display.WIDTH / 2) - 15
+# titleYLoc = (inky_display.HEIGHT / 2) + 5
+# titleLines = textwrap.wrap(meetingTitle, width = meetingChars)
+# i = 0
+# for line in titleLines:
+#     width, height = meetingFont.getsize(line)
+#     if i <= 1:
+#         draw.text(((titleXLoc - (i * 5)), titleYLoc), line, inky_display.WHITE, meetingFont)
+#         titleYLoc += height
+#     i += 1
 
-# Write the meeting time
-meetingTime = meetingJson.get('time')
-timeWidth, timeHeight = meetingFont.getsize(meetingTime)
-timeXLoc = 212 - 5 - timeWidth
-timeYLoc = 88
-draw.text((timeXLoc, timeYLoc), meetingTime, inky_display.WHITE, meetingFont)
+# # Write the meeting time
+# meetingTime = meetingJson.get('time')
+# timeWidth, timeHeight = meetingFont.getsize(meetingTime)
+# timeXLoc = 212 - 5 - timeWidth
+# timeYLoc = 88
+# draw.text((timeXLoc, timeYLoc), meetingTime, inky_display.WHITE, meetingFont)
 
 # Write the temperature
 temperature = reqData.get('temperature')
@@ -129,15 +129,29 @@ if temperature != None and temperature > 0:
     draw.text((tempX + tempWidth, tempY), "o", inky_display.WHITE, meetingFont)
 
 # Write the number of tasks
-todoTasks = reqData.get('todoTasks')
-if todoTasks is not None:
-    todoFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 35)
-    todoTxt = str(todoTasks)
-    todoWidth, todoHeight = todoFont.getsize(todoTxt)
-    todoX = inky_display.WIDTH - todoWidth - 5
-    todoY = 15
-    draw.text((todoX, todoY), todoTxt, inky_display.BLACK, todoFont)
-    img.paste(icons["todo"], ((inky_display.WIDTH - 15) - 5 - todoWidth, 35 - 9))
+# todoTasks = reqData.get('todoTasks')
+# if todoTasks is not None:
+#     todoFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 35)
+#     todoTxt = str(todoTasks)
+#     todoWidth, todoHeight = todoFont.getsize(todoTxt)
+#     todoX = inky_display.WIDTH - todoWidth - 5
+#     todoY = 15
+#     draw.text((todoX, todoY), todoTxt, inky_display.BLACK, todoFont)
+#     img.paste(icons["todo"], ((inky_display.WIDTH - 15) - 5 - todoWidth, 35 - 9))
+
+# Get the stars for Front Matter
+req = requests.get('https://frontmatter.codes/api/stars')
+reqData = req.json()
+
+stars = reqData.get('stars')
+if stars is not None:
+    starsFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 35)
+    starsText = str(stars)
+    todoWidth, todoHeight = starsFont.getsize(starsText)
+    starsX = inky_display.WIDTH - todoWidth - 5
+    starsY = 15
+    draw.text((starsX, starsY), starsText, inky_display.BLACK, starsFont)
+    # img.paste(icons["todo"], ((inky_display.WIDTH - 15) - 5 - todoWidth, 35 - 9))
 
 # Write the availability
 availability = reqData.get('availability')
