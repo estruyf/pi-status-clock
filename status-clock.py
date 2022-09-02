@@ -113,6 +113,16 @@ reqData = req.json()
 # timeYLoc = 88
 # draw.text((timeXLoc, timeYLoc), meetingTime, inky_display.WHITE, meetingFont)
 
+# Get the battery status
+batteryPercentage = reqData.get('battery')
+if batteryPercentage is not None:
+    batteryFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 35)
+    batteryText = str(batteryPercentage)
+    batteryTextWidth, batteryTextHeight = starsFont.getsize(batteryText)
+    starsX = inky_display.WIDTH - batteryTextWidth - 5
+    starsY = 88
+    draw.text((starsX, starsY), starsText, inky_display.WHITE, batteryFont)
+
 # Write the temperature
 temperature = reqData.get('temperature')
 if temperature != None and temperature > 0:
@@ -141,9 +151,6 @@ if temperature != None and temperature > 0:
 #     img.paste(icons["todo"], ((inky_display.WIDTH - 15) - 5 - todoWidth, 35 - 9))
 
 # Get the stars for Front Matter
-req = requests.get('https://frontmatter.codes/api/stars')
-reqData = req.json()
-
 stars = reqData.get('stars')
 if stars is not None:
     starsFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 35)
