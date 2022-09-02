@@ -116,11 +116,11 @@ reqData = req.json()
 # Get the battery status
 batteryPercentage = reqData.get('battery')
 if batteryPercentage is not None:
-    batteryFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 20)
+    batteryFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 16)
     batteryText = str(batteryPercentage)
     batteryTextWidth, batteryTextHeight = batteryFont.getsize(batteryText)
     batteryX = inky_display.WIDTH - batteryTextWidth - 5
-    batteryY = 52 + 18
+    batteryY = 52 + 20
     draw.text((batteryX, batteryY), batteryText, inky_display.WHITE, batteryFont)
 
 # Write the temperature
