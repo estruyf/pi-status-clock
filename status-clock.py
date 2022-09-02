@@ -118,7 +118,7 @@ batteryPercentage = reqData.get('battery')
 if batteryPercentage is not None:
     batteryFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 35)
     batteryText = str(batteryPercentage)
-    batteryTextWidth, batteryTextHeight = starsFont.getsize(batteryText)
+    batteryTextWidth, batteryTextHeight = batteryFont.getsize(batteryText)
     starsX = inky_display.WIDTH - batteryTextWidth - 5
     starsY = 88
     draw.text((starsX, starsY), starsText, inky_display.WHITE, batteryFont)
