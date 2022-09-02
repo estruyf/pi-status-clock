@@ -120,7 +120,7 @@ if batteryPercentage is not None:
     batteryText = str(batteryPercentage)
     batteryTextWidth, batteryTextHeight = batteryFont.getsize(batteryText)
     batteryX = inky_display.WIDTH - batteryTextWidth - 5
-    batteryY = (inky_display.HEIGHT / 2)
+    batteryY = 52
     draw.text((batteryX, batteryY), batteryText, inky_display.WHITE, batteryFont)
 
 # Write the temperature
