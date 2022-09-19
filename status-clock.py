@@ -78,7 +78,7 @@ for icon in glob.glob(os.path.join(PATH, "assets/icon-*.png")):
     icons[icon_name] = reindex_image(icon_image)
 
 # Check if display need to be cleaned
-clean_screen()
+# clean_screen()
 
 # Start the clock
 inky_display.set_border(inky_display.WHITE)
