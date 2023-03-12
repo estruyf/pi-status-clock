@@ -153,7 +153,7 @@ if temperature != None and temperature > 0:
 # Get the stars for Front Matter
 stars = reqData.get('stars')
 if stars is not None:
-    starsFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 35)
+    starsFont = ImageFont.truetype(os.path.join(PATH, "font/BetterPixels.ttf"), 30)
     starsText = str(stars)
     todoWidth, todoHeight = starsFont.getsize(starsText)
     starsX = inky_display.WIDTH - todoWidth - 5
